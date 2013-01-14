@@ -13,7 +13,8 @@
 	$(function(){
 		var nav = $("#nav");
 		var category = $(".category");
-		var categoryBtn = $(".categoryHd i");
+		var categoryHd = $(".categoryHd");
+		var categoryBtn = categoryHd.find("i");
 		var categoryBd = $(".categoryBd");
 		var subCategory = $(".subCategory");
 		var catItem = categoryBd.find(".item");
@@ -61,12 +62,12 @@
 				}
 			};
 		});
-		$(document).mouseover(function(){
-			catItem.mouseover(cancelBubble);
-			subCategory.mouseover(cancelBubble);
+		function closeCat() {
 			catItem.removeClass('selected');
 			subCategory.stop(true,false).animate({'width':'0'},150);
-		});
+		}
+		categoryHd.mouseenter(function(){ closeCat() });
+		category.mouseleave(function(){ closeCat() });
 
 		$(".itemBottom").hover(function(){
 			$(this).addClass("selected");
